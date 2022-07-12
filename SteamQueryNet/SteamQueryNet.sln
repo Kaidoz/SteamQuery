@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SteamQueryNet", "SteamQuery
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SteamQueryNet.Tests", "SteamQueryNet.Tests\SteamQueryNet.Tests.csproj", "{F46A7E96-F7FA-4B43-8E07-481E6A14EF4A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamQueryNet48", "SteamQueryNet48\SteamQueryNet48.csproj", "{445865B7-2C3A-411D-A891-0D44E5277A12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F46A7E96-F7FA-4B43-8E07-481E6A14EF4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F46A7E96-F7FA-4B43-8E07-481E6A14EF4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F46A7E96-F7FA-4B43-8E07-481E6A14EF4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{445865B7-2C3A-411D-A891-0D44E5277A12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{445865B7-2C3A-411D-A891-0D44E5277A12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{445865B7-2C3A-411D-A891-0D44E5277A12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{445865B7-2C3A-411D-A891-0D44E5277A12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

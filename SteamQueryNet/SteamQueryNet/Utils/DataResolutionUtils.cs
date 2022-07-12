@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using SteamQueryNet.Attributes;
-
-namespace SteamQueryNet.Utils;
+﻿namespace SteamQueryNet.Utils;
 
 internal sealed class DataResolutionUtils
 {
@@ -153,11 +146,11 @@ internal sealed class DataResolutionUtils
         return objectList;
     }
 
-    internal static List<TObject> ExtractRulesData<TObject>(byte[] rawSource)
+    internal static List<Rule> ExtractRulesData<TObject>(byte[] rawSource)
         where TObject : class
     {
         // Create a list to contain the serialized data.
-        var objectList = new List<TObject>();
+        var objectList = new List<Rule>();
 
         // Skip the response headers.
         var itemCount = BitConverter.ToInt16(
@@ -172,23 +165,28 @@ internal sealed class DataResolutionUtils
 
         if (dataSource.Any())
             for (byte i = 0; i < itemCount; i++)
-        {
-            // Activate a new instance of the object.
-            var objectInstance = Activator.CreateInstance<TObject>();
-
-            // Extract the data.
-            dataSource = ExtractData(objectInstance, dataSource.ToArray());
-
-            if (objectList.Count > itemCount)
             {
-                throw new Exception("This shouldn't be longer then the item count");
+                // Activate a new instance of the object.
+                var objectInstance = Activator.CreateInstance<TObject>();
+
+                return objectList;
             }
 
-            // Add it into the list.
-            objectList.Add(objectInstance);
+        if (objectList.Count > itemCount)
+        {
+            throw new Exception("This shouldn't be longer then the item count");
         }
 
-        return objectList;
+        // Add it into the list.
+        objectList.Add(objectInstance);
+    }
+
+    internal static byte[] MergeByteArrays(byte[] array1, byte[] array2)
+    {
+        byte[] array3 = new byte[array1.Length + array2.Length];
+        Buffer.BlockCopy(array1, 0, array3, 0, array1.Length);
+        Buffer.BlockCopy(array2, 0, array3, array1.Length, array2.Length);
+        return array3;
     }
 
 

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using SteamQueryNet.Models;
+using System;
 using System.Linq;
 using System.Text;
-using SteamQueryNet.Models;
 
 namespace SteamQueryNet.Utils;
 

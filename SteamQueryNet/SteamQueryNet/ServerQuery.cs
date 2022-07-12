@@ -1,4 +1,8 @@
-﻿using System;
+﻿using SteamQueryNet.Interfaces;
+using SteamQueryNet.Models;
+using SteamQueryNet.Services;
+using SteamQueryNet.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -6,10 +10,6 @@ using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using SteamQueryNet.Interfaces;
-using SteamQueryNet.Models;
-using SteamQueryNet.Services;
-using SteamQueryNet.Utils;
 
 [assembly: InternalsVisibleTo("SteamQueryNet.Tests")]
 

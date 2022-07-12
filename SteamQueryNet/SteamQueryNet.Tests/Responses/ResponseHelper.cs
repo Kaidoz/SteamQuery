@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using SteamQueryNet.Enums;
-using SteamQueryNet.Models;
 
 namespace SteamQueryNet.Tests.Responses;
 

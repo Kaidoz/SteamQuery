@@ -1,5 +1,5 @@
-﻿using System;
-using SteamQueryNet.Attributes;
+﻿using SteamQueryNet.Attributes;
+using System;
 
 namespace SteamQueryNet.Models;
 

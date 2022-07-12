@@ -1,16 +1,13 @@
-﻿using System;
+﻿using Moq;
+using Newtonsoft.Json;
+using SteamQueryNet.Tests.Responses;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
-using Moq;
-using Newtonsoft.Json;
-using SteamQueryNet.Interfaces;
-using SteamQueryNet.Models;
-using SteamQueryNet.Tests.Responses;
-using SteamQueryNet.Utils;
 using Xunit;
 
 namespace SteamQueryNet.Tests;
