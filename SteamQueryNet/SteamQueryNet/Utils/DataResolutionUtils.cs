@@ -1,4 +1,12 @@
-﻿namespace SteamQueryNet.Utils;
+﻿using SteamQueryNet.Attributes;
+using SteamQueryNet.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+
+namespace SteamQueryNet.Utils;
 
 internal sealed class DataResolutionUtils
 {
@@ -161,24 +169,28 @@ internal sealed class DataResolutionUtils
         );
 
         // Skip +2 for item_count, because its short
-        var dataSource = rawSource.Skip(RESPONSE_HEADER_COUNT + sizeof(Int16));
+        var dataSource = MergeByteArrays(rawSource.Skip(4).ToArray(), RuleQuery);//.Skip(RESPONSE_HEADER_COUNT + sizeof(Int16));
 
         if (dataSource.Any())
-            for (byte i = 0; i < itemCount; i++)
-            {
-                // Activate a new instance of the object.
-                var objectInstance = Activator.CreateInstance<TObject>();
-
-                return objectList;
-            }
-
-        if (objectList.Count > itemCount)
         {
-            throw new Exception("This shouldn't be longer then the item count");
+            Parser parser = new Parser(dataSource.ToArray());
+            byte byt = parser.ReadByte();
+            if (byt != 69)
+            {
+                throw new Exception("A2S_RULES message header is not valid");
+            }
+            int num = (int)parser.ReadShort();
+            List<Rule> list = new List<Rule>(num);
+            for (int i = 0; i < num; i++)
+            {
+                objectList.Add(new Rule
+                {
+                    Name = parser.ReadString(),
+                    Value = parser.ReadString()
+                });
+            }
         }
-
-        // Add it into the list.
-        objectList.Add(objectInstance);
+        return objectList;
     }
 
     internal static byte[] MergeByteArrays(byte[] array1, byte[] array2)
@@ -189,6 +201,7 @@ internal sealed class DataResolutionUtils
         return array3;
     }
 
+    internal static readonly byte[] RuleQuery = new byte[] { byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue, 86 };
 
     internal static (object, int) ExtractMarshalType(IEnumerable<byte> source, Type type)
     {

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SteamQueryNet.Enums;
+using SteamQueryNet.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
